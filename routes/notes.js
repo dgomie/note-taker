@@ -44,6 +44,7 @@ notes.post("/", (req, res) => {
           ? console.error(err)
           : console.log(`New note has been written to JSON file`)
       );
+      res.json({ message: `Note has been added` });
     });
   }
 });
