@@ -47,4 +47,31 @@ notes.post('/', (req, res) => {
     }
 });
 
+notes.delete('/:id', (req, res) => {
+    console.info(`${req.method} request received to delete a note`);
+
+    const noteId = req.params.id;
+
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: err.toString() });
+        }
+
+        let savedData = JSON.parse(data);
+        savedData = savedData.filter(note => note.id !== noteId);
+
+        fs.writeFile('./db/db.json', JSON.stringify(savedData), (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: err.toString() });
+            }
+
+            console.log(`Note with id ${noteId} has been deleted from JSON file`);
+            res.json({ message: `Note with id ${noteId} has been deleted` });
+        });
+    });
+});
+
+
 module.exports = notes;
