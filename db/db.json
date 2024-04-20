@@ -1,5 +1,1 @@
-[
-  { "id": 1, "title": "Test Title", "text": "Test text" },
-  { "id": 2, "title": "1234", "text": "wert" },
-  { "id": 3, "title": "test 2", "text": "danny test" }
-]
+[{"id":"01","title":"Test Title","text":"Test text"}]
